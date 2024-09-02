@@ -1,0 +1,23 @@
+version: '3'
+services:
+  web:
+    build: .
+    container_name: react-app-container
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+    command: npm start
+
+# 最初
+# version: '3'
+# services:
+#   web:
+#     build: .
+#     container_name: react-app-container
+#     ports:
+#       - "3000:3000"
+#     volumes:
+#       - .:/app
+#     command: sh
+#     tty: true 
