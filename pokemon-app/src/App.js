@@ -2,10 +2,12 @@ import logo from './logo.svg';
 import './App.css';
 import { useEffect, useState } from 'react';
 import { getAllPokemon, getPokemon } from './utils/pokemon';
+import Card from './components/Card/Card';
 
 function App() {
   const initialURL = "https://pokeapi.co/api/v2/pokemon"
   const [loading, setLoding] = useState(true);
+  const [pokemonData, setPokemonData] = useState([]);
 
   useEffect(() => {
     const fetchPokemonData = async () => {
@@ -24,7 +26,7 @@ function App() {
         return pokemonRecord;
       })
     );
-    console.log(_pokemonData)
+    setPokemonData(_pokemonData)
   }
 
   
@@ -34,7 +36,11 @@ function App() {
       {loading ? (
         <h1>ロード中。。。</h1>
       ) : (
-        <h1>ポケモンデータを取得</h1>
+        <div className='pokemonCardContainer'>
+          {pokemonData.map((pokemon, i) => {
+            return <Card key={i} pokemon={pokemon} />;
+          })}
+        </div>
       )
       }
     </div>
